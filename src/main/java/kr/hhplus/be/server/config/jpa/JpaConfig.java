@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.support.config.jpa;
+package kr.hhplus.be.server.config.jpa;
 
 import org.hibernate.dialect.Database;
 import org.springframework.boot.context.properties.ConfigurationProperties;
