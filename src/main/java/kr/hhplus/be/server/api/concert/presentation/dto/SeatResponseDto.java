@@ -1,6 +1,7 @@
 package kr.hhplus.be.server.api.concert.presentation.dto;
 
-import kr.hhplus.be.server.api.concert.domain.entity.Seat;
+import kr.hhplus.be.server.api.concert.domain.entity.ConcertSeat;
+import kr.hhplus.be.server.api.concert.domain.entity.ConcertSeatStatus;
 import lombok.Builder;
 
 import java.math.BigDecimal;
@@ -12,13 +13,13 @@ public class SeatResponseDto {
 
     private Long seatId;
     private Long scheduleId;
-    private String seatNumber;
-    private String status;
-    private BigDecimal price;
+    private Integer seatNumber;
+    private ConcertSeatStatus status;
+    private Integer price;
 
-    public static SeatResponseDto toDto(Seat seat) {
+    public static SeatResponseDto toDto(ConcertSeat seat) {
         return SeatResponseDto.builder()
-                .seatId(seat.getSeatId())
+                .seatId(seat.getId())
                 .scheduleId(seat.getScheduleId())
                 .seatNumber(seat.getSeatNumber())
                 .status(seat.getStatus())
@@ -27,10 +28,10 @@ public class SeatResponseDto {
 
     }
 
-    public static List<SeatResponseDto> toDtoList(List<Seat> seats){
+    public static List<SeatResponseDto> toDtoList(List<ConcertSeat> seats){
 
         List<SeatResponseDto> dtos = new ArrayList<>();
-        for (Seat seat : seats) {
+        for (ConcertSeat seat : seats) {
             dtos.add(SeatResponseDto.toDto(seat));
         }
         return dtos;

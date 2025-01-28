@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import kr.hhplus.be.server.api.concert.application.ConcertService;
 import kr.hhplus.be.server.api.concert.domain.entity.Concert;
-import kr.hhplus.be.server.api.concert.domain.entity.Schedule;
+import kr.hhplus.be.server.api.concert.domain.entity.ConcertSchedule;
 import kr.hhplus.be.server.api.concert.presentation.dto.ConcertResponseDto;
 import kr.hhplus.be.server.api.concert.presentation.dto.ScheduleResponseDto;
 import kr.hhplus.be.server.api.concert.presentation.dto.SeatResponseDto;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/concerts")
+@RequestMapping("/api/concerts")
 public class ConcertController {
 
     private final ConcertService concertService;
@@ -44,7 +44,7 @@ public class ConcertController {
             @Parameter(description = "인증토큰") @RequestHeader(value = "Authorization", required = false) String token)
     {
 
-        List<Schedule> scheduleList = concertService.getScheduleList(concertId);
+        List<ConcertSchedule> scheduleList = concertService.getScheduleList(concertId);
         return ResponseEntity.ok(ScheduleResponseDto.toDtoList(scheduleList));
 
     }

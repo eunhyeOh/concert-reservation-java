@@ -1,35 +1,33 @@
 package kr.hhplus.be.server.api.concert.domain.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import kr.hhplus.be.server.common.config.jpa.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 
 @Getter
-@Setter
 @Entity
-@Table(name = "tb_concert", schema = "hhplus")
-public class Concert {
+@Table(name = "tb_concert")
+public class Concert extends BaseEntity {
     @Id
     @Column(name = "concert_id", nullable = false)
     private Long id;
 
-    @Size(max = 200)
+    @Size(max = 250)
     @NotNull
-    @Column(name = "title", nullable = false, length = 200)
+    @Column(name = "title", nullable = false, length = 250)
     private String title;
 
-    @Lob
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
 
 }

@@ -1,11 +1,11 @@
 package kr.hhplus.be.server.api.concert.domain.repository;
 
-import kr.hhplus.be.server.api.concert.domain.entity.Schedule;
+import kr.hhplus.be.server.api.concert.domain.entity.ConcertSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ScheduleJpaRepository extends JpaRepository<Schedule, Long> {
+public interface ScheduleJpaRepository extends JpaRepository<ConcertSchedule, Long> {
 
-    List<Schedule> findAllByConcertId(Long concertId);
+    List<ConcertSchedule> findAllByConcertId(Long concertId);
 }

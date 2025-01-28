@@ -20,7 +20,6 @@ public class ConcertResponseDto {
                 .concertId(concert.getId())
                 .title(concert.getTitle())
                 .description(concert.getDescription())
-                .createdAt(concert.getCreatedAt())
                 .build();
     }
 

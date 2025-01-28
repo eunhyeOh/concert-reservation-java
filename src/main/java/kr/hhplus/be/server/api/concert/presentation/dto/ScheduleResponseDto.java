@@ -1,6 +1,7 @@
 package kr.hhplus.be.server.api.concert.presentation.dto;
 
-import kr.hhplus.be.server.api.concert.domain.entity.Schedule;
+import kr.hhplus.be.server.api.concert.domain.entity.Concert;
+import kr.hhplus.be.server.api.concert.domain.entity.ConcertSchedule;
 import lombok.Builder;
 
 import java.time.Instant;
@@ -13,21 +14,23 @@ public class ScheduleResponseDto {
     private Long scheduleId;
     private Long concertId;
     private Integer maxCapacity;
-    private Instant date;
+    private Instant startDt;
+    private Instant endDt;
 
-    public static ScheduleResponseDto toDto(Schedule schedule) {
+    public static ScheduleResponseDto toDto(ConcertSchedule schedule) {
         return ScheduleResponseDto.builder()
-                .scheduleId(schedule.getScheduleId())
+                .scheduleId(schedule.getId())
                 .concertId(schedule.getConcertId())
                 .maxCapacity(schedule.getMaxCapacity())
-                .date(schedule.getDate())
+                .startDt(schedule.getStartDt())
+                .endDt(schedule.getEndDt())
                 .build();
     }
 
-    public static List<ScheduleResponseDto> toDtoList(List<Schedule> schedules) {
+    public static List<ScheduleResponseDto> toDtoList(List<ConcertSchedule> schedules) {
 
         List<ScheduleResponseDto> dtos = new ArrayList<>();
-        for (Schedule schedule : schedules) {
+        for (ConcertSchedule schedule : schedules) {
             dtos.add(ScheduleResponseDto.toDto(schedule));
         }
 
