@@ -7,12 +7,12 @@ BEGIN
 
     WHILE i <= max_id DO
         -- 2025-02-02 데이터 삽입
-        INSERT INTO tb_concert_schedule (concert_id, date, max_capacity)
-        VALUES (i, '2025-02-02 19:00:00', 50);
+        INSERT INTO tb_concert_schedule (concert_id, start_dt, end_dt, max_capacity)
+        VALUES (i, '2025-02-02 17:00:00', '2025-02-02 20:00:00', 50);
         
         -- 2025-02-03 데이터 삽입
-        INSERT INTO tb_concert_schedule (concert_id, date, max_capacity)
-        VALUES (i, '2025-02-03 19:00:00', 50);
+        INSERT INTO tb_concert_schedule (concert_id, start_dt, end_dt,max_capacity)
+        VALUES (i, '2025-02-03 19:00:00', '2025-02-02 20:00:00', 50);
 
         SET i = i + 1; -- 다음 concert_id로 증가
     END WHILE;

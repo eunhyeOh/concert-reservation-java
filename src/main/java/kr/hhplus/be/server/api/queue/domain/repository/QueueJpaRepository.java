@@ -4,8 +4,8 @@ import kr.hhplus.be.server.api.queue.domain.entity.Queue;
 import kr.hhplus.be.server.api.queue.domain.entity.QueueStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface QueueJpaRepository extends JpaRepository<Queue, Long> {
@@ -17,5 +17,5 @@ public interface QueueJpaRepository extends JpaRepository<Queue, Long> {
     int countByIdLessThanAndStatus(Long queueId, QueueStatus status);
 
     //만료된 대기열 상태 변경
-    int deleteByExpiredDtBeforeAndStatus(Instant expiredDt, QueueStatus status);
+    List<Queue> findAllByExpiredDtBeforeAndStatus(LocalDateTime expiredDt, QueueStatus status);
 }

@@ -2,12 +2,15 @@ package kr.hhplus.be.server.api.reservation.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import kr.hhplus.be.server.api.concert.domain.entity.ConcertSeat;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "tb_reservation")
@@ -25,16 +28,35 @@ public class Reservation {
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "reserved_dt", nullable = false)
-    private Instant reservedDt;
+    private LocalDateTime reservedDt;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "reserved_untill_dt", nullable = false)
-    private Instant reservedUntillDt;
+    private LocalDateTime reservedUntillDt;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_dt", nullable = false)
-    private Instant createdDt;
+    private LocalDateTime createdDt;
+
+    public Reservation(Long userId, Long seatId) {
+        this.userId = userId;
+        this.seatId = seatId;
+        this.reservedDt = LocalDateTime.now();
+        this.reservedUntillDt = LocalDateTime.now().plusSeconds(300);
+        this.createdDt = LocalDateTime.now();
+    }
+
+    /**
+     * 만료 여부 확인
+     * */
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter(this.reservedUntillDt);
+    }
+
+    public void expire() {
+        this.reservedUntillDt = LocalDateTime.now();
+    }
 
 }

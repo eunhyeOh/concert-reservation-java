@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import kr.hhplus.be.server.common.config.jpa.BaseEntity;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -23,12 +22,12 @@ public class ConcertSchedule extends BaseEntity {
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "start_dt", nullable = false)
-    private Instant startDt;
+    private LocalDateTime startDt;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "end_dt", nullable = false)
-    private Instant endDt;
+    private LocalDateTime endDt;
 
     @NotNull
     @ColumnDefault("0")

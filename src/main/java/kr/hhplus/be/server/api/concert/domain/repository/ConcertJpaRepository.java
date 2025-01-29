@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ConcertJpaRepository extends JpaRepository<Concert, Long> {
 
-
     List<Concert> findAll();
 
 }

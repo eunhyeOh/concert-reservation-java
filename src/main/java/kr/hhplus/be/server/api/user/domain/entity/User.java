@@ -7,8 +7,6 @@ import kr.hhplus.be.server.common.config.jpa.BaseEntity;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
-
 @Getter
 @Entity
 @Table(name = "tb_user")
@@ -35,5 +33,12 @@ public class User extends BaseEntity {
         }
 
         this.userAmount += amount;
+    }
+
+    public void deposit(int amount){
+        if(this.userAmount < amount){
+            throw new IllegalArgumentException("잔액이 부족합니다.");
+        }
+        this.userAmount -= amount;
     }
 }

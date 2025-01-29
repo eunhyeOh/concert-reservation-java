@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "tb_queue")
@@ -33,20 +35,23 @@ public class Queue {
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "entered_dt", nullable = false)
-    private Instant enteredDt;
+    private LocalDateTime enteredDt;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "expired_dt", nullable = false)
-    private Instant expiredDt;
+    private LocalDateTime expiredDt;
 
-    protected Queue() {}
 
-    public Queue(Long userId, String token, QueueStatus status, Instant enteredDt, Instant expiredDt) {
+    public Queue(Long userId, String token, QueueStatus status, LocalDateTime enteredDt, LocalDateTime expiredDt) {
         this.userId = userId;
         this.token = token;
         this.status = status;
         this.enteredDt = enteredDt;
         this.expiredDt = expiredDt;
+    }
+
+    public void expire(){
+        this.status = QueueStatus.EXPIRED;
     }
 }

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import kr.hhplus.be.server.common.config.jpa.BaseEntity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "tb_payment_history")
@@ -27,8 +29,6 @@ public class PaymentHistory extends BaseEntity {
     @Column(name = "type", nullable = false)
     private PaymentHistoryType type;
 
-
-    protected PaymentHistory() { }
 
     public PaymentHistory(Long userId, Long paymentId, Integer amountChange, PaymentHistoryType type) {
         this.userId = userId;

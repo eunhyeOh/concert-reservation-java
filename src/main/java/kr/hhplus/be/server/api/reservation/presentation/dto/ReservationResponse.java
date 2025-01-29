@@ -3,27 +3,24 @@ package kr.hhplus.be.server.api.reservation.presentation.dto;
 import kr.hhplus.be.server.api.reservation.domain.entity.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @Builder
-public class ReservationResponseDto {
+public class ReservationResponse {
     private Long reservationId;
     private Long seatId;
     private Long userId;
-    private Instant reservedUntillDt;      // 임시 배정 시작 시간
-    private Instant reservedDt;   // 임시 배정 만료 시간
-    private Instant createdDt;
+    private LocalDateTime reservedUntillDt;      // 임시 배정 시작 시간
+    private LocalDateTime reservedDt;   // 임시 배정 만료 시간
+    private LocalDateTime createdDt;
 
 
-    public static ReservationResponseDto toDto (Reservation reservation) {
-        return ReservationResponseDto.builder()
+    public static ReservationResponse toDto (Reservation reservation) {
+        return ReservationResponse.builder()
                 .reservationId(reservation.getId())
                 .seatId(reservation.getSeatId())
                 .userId(reservation.getUserId())
@@ -33,13 +30,13 @@ public class ReservationResponseDto {
                 .build();
     }
 
-    public static List<ReservationResponseDto> toDtoList (List<Reservation> reservations) {
-        List<ReservationResponseDto> dtos = new ArrayList<>();
+    public static List<ReservationResponse> toDtoList (List<Reservation> reservations) {
+        List<ReservationResponse> resultList = new ArrayList<>();
         for (Reservation reservation : reservations) {
-            dtos.add(ReservationResponseDto.toDto(reservation));
+            resultList.add(ReservationResponse.toDto(reservation));
         }
 
-        return dtos;
+        return resultList;
     }
 
 }
